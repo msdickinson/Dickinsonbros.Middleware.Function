@@ -1,7 +1,6 @@
 # Dickinsonbros.Middleware.Function
-# DickinsonBros.Middleware
-<a href="https://www.nuget.org/packages/DickinsonBros.Middleware/">
-    <img src="https://img.shields.io/nuget/v/DickinsonBros.Middleware">
+<a href="https://www.nuget.org/packages/DickinsonBros.Middleware.Function/">
+    <img src="https://img.shields.io/nuget/v/DickinsonBros.Middleware.Function">
 </a>
 
 Middleware for ASP.Net
@@ -14,7 +13,7 @@ Features
 * Handles correlation Ids
 * Catch all uncaught exceptions and log them redacted
 
-<a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_build?definitionScope=%5CDickinsonBros.Middleware">Builds</a>
+<a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_build?definitionScope=%5CDickinsonBros.Middleware.Function">Builds</a>
 
 <h2>Example Usage</h2>
 
