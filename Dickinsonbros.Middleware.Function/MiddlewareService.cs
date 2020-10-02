@@ -109,8 +109,8 @@ namespace Dickinsonbros.Middleware.Function
                     }
                     else
                     {
-                        role = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role).Value;
-                        nameIdentifier = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
+                        role = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value;
+                        nameIdentifier = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
                         vaildAuth = true;
                     }
                 }
