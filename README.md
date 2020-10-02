@@ -11,7 +11,6 @@
     [2020-10-02T17:39:23.635] Role: User
     [2020-10-02T17:39:23.638] NameIdentifier: 1924
     [2020-10-02T17:39:23.639] CorrelationId: 5b2213dd-8a93-4f73-9d54-fd84e93069ef
-    [2020-10-02T17:39:23.640]
 
     [2020-10-02T17:39:23.647] Response GET http://localhost:7071/api/SampleFunctionWithAuth
     [2020-10-02T17:39:23.651] ContentType: application/json
