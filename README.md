@@ -3,13 +3,14 @@
     <img src="https://img.shields.io/nuget/v/DickinsonBros.Middleware.Function">
 </a>
 
-Middleware for ASP.Net
+Middleware for Azure Functions
 
 Features
 
-* Logs requests redacted
-* Logs responses redacted and statuscode
+* Logs requests redacted (With "api" in route)
+* Logs responses redacted and status codes (With "api" in route)
 * Adds Telemetry
+* Handles Auth
 * Handles correlation Ids
 * Catch all uncaught exceptions and log them redacted
 
