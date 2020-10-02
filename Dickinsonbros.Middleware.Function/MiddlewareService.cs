@@ -32,7 +32,7 @@ namespace Dickinsonbros.Middleware.Function
         internal readonly ILoggingService<MiddlewareService<T>> _loggingService;
         internal readonly ICorrelationService _correlationService;
         internal readonly IJWTService<T> _jwtService;
-
+        
         public MiddlewareService(
             IServiceProvider serviceProvider,
             IDateTimeService dateTimeService,
@@ -77,24 +77,8 @@ namespace Dickinsonbros.Middleware.Function
 
             var requestBody = await FormatRequestAsync(context.Request);
 
-            if (context.Request.Path.Value.Contains("/api/", StringComparison.OrdinalIgnoreCase))
-            {
-                _loggingService.LogInformationRedacted
-                (
-                    $"+ {telemetryData.Name}",
-                    new Dictionary<string, object>
-                    {
-                        { "Path", context.Request.Path.Value },
-                        { "Method", context.Request.Method },
-                        { "Scheme", context.Request.Scheme },
-                        { "Prams", context.Request.Query.ToDictionary() },
-                        { "Body", requestBody }
-                    }
-                );
-            }
 
-            using var responseBody = new MemoryStream();
-            context.Response.Body = responseBody;
+
             try
             {
                 context.Response.Headers.TryAdd
@@ -104,6 +88,8 @@ namespace Dickinsonbros.Middleware.Function
                 );
 
                 bool vaildAuth = !withAuth;
+                var role = (string)null;
+                var nameIdentifier = (string)null;
                 if (withAuth)
                 {
                     string token = context.Request.Headers.FirstOrDefault(header => header.Key == "Authorization").Value.ToString().Split("Bearer").LastOrDefault().Trim();
@@ -123,11 +109,31 @@ namespace Dickinsonbros.Middleware.Function
                     }
                     else
                     {
+                        role = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role).Value;
+                        nameIdentifier = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
                         vaildAuth = true;
                     }
                 }
 
-                if(vaildAuth)
+                if (context.Request.Path.Value.Contains("/api/", StringComparison.OrdinalIgnoreCase))
+                {
+                    _loggingService.LogInformationRedacted
+                    (
+                        $"+ {telemetryData.Name}",
+                        new Dictionary<string, object>
+                        {
+                            { "Path", context.Request.Path.Value },
+                            { "Method", context.Request.Method },
+                            { "Scheme", context.Request.Scheme },
+                            { "Prams", context.Request.Query.ToDictionary() },
+                            { "Body", requestBody },
+                            { "Role", role},
+                            { "NameIdentifier",  nameIdentifier}
+                        }
+                    );
+                }
+
+                if (vaildAuth)
                 {
                     contentResult = await callback().ConfigureAwait(false);
                 }

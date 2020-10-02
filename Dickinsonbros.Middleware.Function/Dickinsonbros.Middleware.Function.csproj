@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DickinsonBros.Encryption.JWT.Abstractions" Version="2.0.0, 3.0.0)" />
+    <PackageReference Include="DickinsonBros.Encryption.JWT.Abstractions" Version="[2.0.0, 3.0.0)" />
     <PackageReference Include="DickinsonBros.Guid.Abstractions" Version="[2.0.0, 3.0.0)" />
     <PackageReference Include="DickinsonBros.Logger.Abstractions" Version="[2.0.0, 3.0.0)" />
     <PackageReference Include="DickinsonBros.DateTime.Abstractions" Version="[2.0.0, 3.0.0)" />
