@@ -1102,7 +1102,8 @@ namespace Dickinsonbros.Middleware.Function.Tests
 
                     var accessClaims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Role, "User")
+                        new Claim(ClaimTypes.Role, "User"),
+                        new Claim(ClaimTypes.NameIdentifier, "SampleUser")
                     };
                     var accessTokenIsAuthenticated = true;
                     var accessIdentityMock = new Mock<IIdentity>();
@@ -1333,7 +1334,8 @@ namespace Dickinsonbros.Middleware.Function.Tests
 
                     var accessClaims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Role, "User")
+                        new Claim(ClaimTypes.Role, "User"),
+                        new Claim(ClaimTypes.NameIdentifier, "SampleUser")
                     };
                     var accessTokenIsAuthenticated = true;
                     var accessIdentityMock = new Mock<IIdentity>();
