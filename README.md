@@ -1,7 +1,5 @@
 # Dickinsonbros.Middleware.Function
-<a href="https://www.nuget.org/packages/DickinsonBros.Middleware.Function/">
-    <img src="https://img.shields.io/nuget/v/DickinsonBros.Middleware.Function">
-</a>
+<a href="https://dev.azure.com/marksamdickinson/dickinsonbros/_build/latest?definitionId=84&amp;branchName=master"> <img alt="Azure DevOps builds (branch)" src="https://img.shields.io/azure-devops/build/marksamdickinson/DickinsonBros/84/master"> </a> <a href="https://dev.azure.com/marksamdickinson/dickinsonbros/_build/latest?definitionId=84&amp;branchName=master"> <img alt="Azure DevOps coverage (branch)" src="https://img.shields.io/azure-devops/coverage/marksamdickinson/dickinsonbros/84/master"> </a><a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_release?_a=releases&view=mine&definitionId=37"> <img alt="Azure DevOps releases" src="https://img.shields.io/azure-devops/release/marksamdickinson/b5a46403-83bb-4d18-987f-81b0483ef43e/37/38"> </a><a href="https://www.nuget.org/packages/DickinsonBros.Middleware.Function/"><img src="https://img.shields.io/nuget/v/DickinsonBros.Middleware.Function"></a>
 
 Middleware for Azure Functions
 
@@ -13,8 +11,6 @@ Features
 * Handles Auth
 * Handles correlation Ids
 * Catch all uncaught exceptions and log them redacted
-
-<a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_build?definitionScope=%5CDickinsonBros.Middleware.Function">Builds</a>
 
 <h2>Example Usage</h2>
 

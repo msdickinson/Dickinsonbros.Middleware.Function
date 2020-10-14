@@ -12,7 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 Misc", "9 Misc", "{5394AE0E-4580-41F9-9CEC-D9408D8181E1}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\CreateNugetPackagePreRelease.ps1 = Scripts\CreateNugetPackagePreRelease.ps1
-		DickinsonBros.Middleware.runsettings = DickinsonBros.Middleware.runsettings
+		DickinsonBros.Middleware.Function.runsettings = DickinsonBros.Middleware.Function.runsettings
 		Scripts\Publish.yml = Scripts\Publish.yml
 		Scripts\Test.yml = Scripts\Test.yml
 	EndProjectSection
