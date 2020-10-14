@@ -99,7 +99,8 @@ namespace Dickinsonbros.Middleware.Function
                     (
                         accessTokenClaims == null ||
                         !accessTokenClaims.Identity.IsAuthenticated ||
-                        !accessTokenClaims.Claims.Any(claim => claim.Type == ClaimTypes.Role && roles.Any(role => role.ToString() == claim.Value))
+                        !accessTokenClaims.Claims.Any(claim => claim.Type == ClaimTypes.Role && roles.Any(role => role.ToString() == claim.Value)) ||
+                        !accessTokenClaims.Claims.Any(claim => claim.Type == ClaimTypes.NameIdentifier)
                     )
                     {
                         contentResult = new ContentResult
@@ -109,8 +110,8 @@ namespace Dickinsonbros.Middleware.Function
                     }
                     else
                     {
-                        role = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value;
-                        nameIdentifier = accessTokenClaims.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
+                        role = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.Role).Value;
+                        nameIdentifier = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
                         vaildAuth = true;
                     }
                 }
