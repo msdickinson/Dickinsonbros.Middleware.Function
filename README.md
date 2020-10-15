@@ -61,5 +61,7 @@ public async Task<ContentResult> RunAsync
         ElapsedMilliseconds: 29
         CorrelationId: 5b2213dd-8a93-4f73-9d54-fd84e93069ef
 
+<b>Telemetry</b>
+![Alt text](https://raw.githubusercontent.com/msdickinson/DickinsonBros.Middleware.Function/develop/MiddlewareTelemetry.PNG)
 
 [Sample Runner](https://github.com/msdickinson/DickinsonBros.Middleware.Function/tree/master/DickinsonBros.Middleware.Function.Runner)
