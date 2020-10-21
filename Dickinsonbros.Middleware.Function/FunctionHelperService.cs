@@ -48,7 +48,7 @@ namespace Dickinsonbros.Middleware.Function
             {
                 StatusCode = statusCode,
                 Content = JsonSerializer.Serialize(data, typeof(T),  _jsonSerializerOptions),
-                ContentType = "json/html"
+                ContentType = "application/json"
             };
         }
 

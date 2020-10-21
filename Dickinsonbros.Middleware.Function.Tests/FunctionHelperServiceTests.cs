@@ -94,7 +94,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                 {
                     //Setup
                     var statuscode = 200;
-                    var expectedContent = "{\"Name\":\"SampleName\",\"Age\":1\"}";
+                    var expectedContent = "{\"Name\":\"SampleName\",\"Age\":1}";
                     var sampleDataClass = new SampleDataClass
                     {
                         Age = 1,
@@ -111,7 +111,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     //Assert
                     Assert.IsNotNull(observed);
                     Assert.AreEqual(expectedContent, observed.Content);
-                    Assert.AreEqual("text/html", observed.ContentType);
+                    Assert.AreEqual("application/json", observed.ContentType);
                     Assert.AreEqual(statuscode, observed.StatusCode);
 
                     await Task.CompletedTask.ConfigureAwait(false);
