@@ -11,6 +11,7 @@ using DickinsonBros.Test;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,6 +22,7 @@ using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Dickinsonbros.Middleware.Function.Tests
@@ -675,9 +677,6 @@ namespace Dickinsonbros.Middleware.Function.Tests
           );
         }
 
-
-        //InvokeAsync_WithAuthAuthenticatedWithAMatchingRole_StatusCodeReturnsNon401
-
         [TestMethod]
         public async Task InvokeAsync_WithAuthNullAccessTokenClaims_StatusCodeReturns401()
         {
@@ -749,7 +748,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
 
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                    Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResultForCallBack;
@@ -760,7 +759,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     var uutConcrete = (MiddlewareService<SampleClass>)uut;
 
                     //Act
-                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, true, new string[] { "User" }).ConfigureAwait(false);
+                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, null,true, new string[] { "User" }).ConfigureAwait(false);
 
                     //Assert
                     Assert.AreEqual(401, contentResult.StatusCode);
@@ -879,7 +878,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
 
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                    Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResultForCallBack;
@@ -890,7 +889,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     var uutConcrete = (MiddlewareService<SampleClass>)uut;
 
                     //Act
-                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, true, new string[] { "User" }).ConfigureAwait(false);
+                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, null, true, new string[] { "User" }).ConfigureAwait(false);
 
                     //Assert
                     Assert.AreEqual(401, contentResult.StatusCode);
@@ -1009,7 +1008,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
 
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                    Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResultForCallBack;
@@ -1020,7 +1019,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     var uutConcrete = (MiddlewareService<SampleClass>)uut;
 
                     //Act
-                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, true, new string[] { "User" }).ConfigureAwait(false);
+                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, null, true, new string[] { "User" }).ConfigureAwait(false);
 
                     //Assert
                     Assert.AreEqual(401, contentResult.StatusCode);
@@ -1140,7 +1139,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
                         StatusCode = 200
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                    Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResultForCallBack;
@@ -1151,7 +1150,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     var uutConcrete = (MiddlewareService<SampleClass>)uut;
 
                     //Act
-                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, true, new string[] { "User" }).ConfigureAwait(false);
+                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, null, true, new string[] { "User" }).ConfigureAwait(false);
 
                     //Assert
                     Assert.AreNotEqual(401, contentResult.StatusCode);
@@ -1372,7 +1371,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
                         StatusCode = 200
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                    Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResultForCallBack;
@@ -1383,7 +1382,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     var uutConcrete = (MiddlewareService<SampleClass>)uut;
 
                     //Act
-                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, true, new string[] { "User" }).ConfigureAwait(false);
+                    var contentResult = await uutConcrete.InvokeAsync(httpContextMock.Object, callback, null, true, new string[] { "User" }).ConfigureAwait(false);
 
                     //Assert
                     Assert.AreEqual(contentResultForCallBack, contentResult);
@@ -2723,7 +2722,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
 
                     //Assert
                     Assert.AreEqual(500, contentResult.StatusCode);
-                   
+
                 },
               serviceCollection => ConfigureServices(serviceCollection)
           );
@@ -2810,7 +2809,7 @@ namespace Dickinsonbros.Middleware.Function.Tests
                     {
 
                     };
-                    Func<Task<ContentResult>> callback = async () =>
+                   Func<ClaimsPrincipal, Task<ContentResult>> callback = async (user) =>
                     {
                         await Task.CompletedTask.ConfigureAwait(false);
                         return contentResult;
@@ -2929,7 +2928,10 @@ namespace Dickinsonbros.Middleware.Function.Tests
 
         private IServiceCollection ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddMiddlwareService<SampleClass>();
+            var jsonSerializerOptions = new JsonSerializerOptions();
+            var configurationRoot = BuildConfigurationRoot(jsonSerializerOptions);
+
+            serviceCollection.AddMiddlwareService<SampleClass>(configurationRoot);
             serviceCollection.AddSingleton(Mock.Of<ITelemetryService>());
             serviceCollection.AddSingleton(Mock.Of<IDateTimeService>());
             serviceCollection.AddSingleton(Mock.Of<IStopwatchService>());

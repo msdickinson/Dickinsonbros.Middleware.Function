@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Dickinsonbros.Middleware.Function\Dickinsonbros.Middleware.Function.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

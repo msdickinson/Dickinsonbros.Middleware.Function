@@ -3,24 +3,25 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
     <Name>Dickinsonbros.Middleware.Function.Runner</Name>
+    <_FunctionsSkipCleanOutput>true</_FunctionsSkipCleanOutput>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DickinsonBros.Encryption.JWT" Version="2.0.0" />
-    <PackageReference Include="DickinsonBros.IntegrationTest" Version="3.0.0" />
+    <PackageReference Include="DickinsonBros.IntegrationTest" Version="4.0.0" />
     <PackageReference Include="DickinsonBros.DateTime" Version="3.0.0" />
-    <PackageReference Include="DickinsonBros.Encryption.Certificate" Version="6.1.0" />
+    <PackageReference Include="DickinsonBros.Encryption.Certificate" Version="6.1.1" />
     <PackageReference Include="DickinsonBros.Logger" Version="3.0.0" />
     <PackageReference Include="DickinsonBros.Guid" Version="3.0.0" />
     <PackageReference Include="DickinsonBros.Redactor" Version="4.0.0" />
     <PackageReference Include="DickinsonBros.Stopwatch" Version="4.0.0" />
     <PackageReference Include="DickinsonBros.Telemetry" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Serilog" Version="2.10.0" />
@@ -28,7 +29,7 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="Serilog.Sinks.Splunk" Version="3.4.0" />
+    <PackageReference Include="Serilog.Sinks.Splunk" Version="3.6.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
