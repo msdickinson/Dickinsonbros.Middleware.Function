@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -54,15 +53,15 @@ namespace Dickinsonbros.Middleware.Function
 
         public async Task<ContentResult> InvokeAsync(HttpContext context, Func<Task<ContentResult>> callback)
         {
-            return await InvokeAsync(context, callback, false).ConfigureAwait(false);
+            return await InvokeAsync(context, null, callback, false).ConfigureAwait(false);
         }
 
-        public async Task<ContentResult> InvokeWithJWTAuthAsync(HttpContext context, Func<Task<ContentResult>> callback, params string[] roles)
+        public async Task<ContentResult> InvokeWithJWTAuthAsync(HttpContext context, Func<ClaimsPrincipal, Task<ContentResult>> callback, params string[] roles)
         {
-            return await InvokeAsync(context, callback, true, roles).ConfigureAwait(false);
+            return await InvokeAsync(context, callback, null, true, roles).ConfigureAwait(false);
         }
 
-        internal async Task<ContentResult> InvokeAsync(HttpContext context, Func<Task<ContentResult>> callback, bool withAuth, params string[] roles)
+        internal async Task<ContentResult> InvokeAsync(HttpContext context, Func<ClaimsPrincipal, Task<ContentResult>> callbackClaimsPrincipal, Func<Task<ContentResult>> callback, bool withAuth, params string[] roles)
         {
             var contentResult = (ContentResult)null;
             var telemetryData = new TelemetryData
@@ -88,6 +87,7 @@ namespace Dickinsonbros.Middleware.Function
                 );
 
                 bool vaildAuth = !withAuth;
+                var user = (ClaimsPrincipal)null;
                 var role = (string)null;
                 var nameIdentifier = (string)null;
                 if (withAuth)
@@ -112,6 +112,7 @@ namespace Dickinsonbros.Middleware.Function
                     {
                         role = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.Role).Value;
                         nameIdentifier = accessTokenClaims.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
+                        user = accessTokenClaims;
                         vaildAuth = true;
                     }
                 }
@@ -136,7 +137,14 @@ namespace Dickinsonbros.Middleware.Function
 
                 if (vaildAuth)
                 {
-                    contentResult = await callback().ConfigureAwait(false);
+                    if (withAuth)
+                    {
+                        contentResult = await callbackClaimsPrincipal(user).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        contentResult = await callback().ConfigureAwait(false);
+                    }
                 }
          
                 stopwatchService.Stop();

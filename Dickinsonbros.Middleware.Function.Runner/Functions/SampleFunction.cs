@@ -46,7 +46,7 @@ namespace Dickinsonbros.Middleware.Function.Runner.Functions
             return await _middlewareService.InvokeWithJWTAuthAsync
             (
                 req.HttpContext,
-                async () =>
+                async (user) =>
                 {
                     await Task.CompletedTask.ConfigureAwait(false);
 

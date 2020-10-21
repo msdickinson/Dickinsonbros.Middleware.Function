@@ -80,7 +80,7 @@ namespace Dickinsonbros.Middleware.Function.Runner.Startup
             services.AddJWTService<GeneralWebsite>();
 
             //#Local Packages
-            services.AddMiddlwareService<GeneralWebsite>();
+            services.AddMiddlwareService<GeneralWebsite>(configuration);
         }
 
     }

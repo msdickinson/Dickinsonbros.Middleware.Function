@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Configurations>Debug;Release</Configurations>
-    <Version>1.0.1</Version>
+    <VersionPrefix>1.0.2</VersionPrefix>
     <Authors>Mark Dickinson</Authors>
     <Company>DickinsonBros</Company>
     <DebugType>Full</DebugType>
@@ -34,6 +34,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="[2.2.0, 3.0.0)" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="[2.2.0, 3.0.0)" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="[2.2.5, 3.0.0)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="[3.1.9, 4.0.0)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="[3.1.9, 4.0.0)" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="[3.1.9, 4.0.0)" />
+    
     <PackageReference Include="morelinq" Version="[3.3.2, 4.0.0)" />
   </ItemGroup>
 
