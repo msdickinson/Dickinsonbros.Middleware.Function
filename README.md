@@ -61,13 +61,7 @@ public async Task<ContentResult> RunAsync
         ElapsedMilliseconds: 29
         CorrelationId: 5b2213dd-8a93-4f73-9d54-fd84e93069ef
 
+<b>Telemetry</b>
+![Alt text](https://raw.githubusercontent.com/msdickinson/DickinsonBros.Middleware.Function/develop/MiddlewareTelemetry.PNG)
 
-![Alt text](https://raw.githubusercontent.com/msdickinson/DickinsonBros.Middleware/develop/TelemetryAPISample.PNG)
-
-Note: Logs can be redacted via configuration (see https://github.com/msdickinson/DickinsonBros.Redactor)
-
-Telemetry generated when using DickinsonBros.Telemetry and connecting it to a configured database for ITelemetry See https://github.com/msdickinson/DickinsonBros.Telemetry on how to configure DickinsonBros.Telemetry and setup the database.
-
-Example Runner Included in folder "DickinsonBros.Middleware.Function.Runner"
-
-
+[Sample Runner](https://github.com/msdickinson/DickinsonBros.Middleware.Function/tree/master/DickinsonBros.Middleware.Function.Runner)
